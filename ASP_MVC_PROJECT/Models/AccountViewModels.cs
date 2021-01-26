@@ -121,4 +121,15 @@ namespace ASP_MVC_PROJECT.Models
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
     }
+
+    public class ChangeUserNameSurnameViewModel
+    {
+        [Required]
+        [Display(Name = "Imię")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Surname { get; set; }
+    }
 }
