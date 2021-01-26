@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASP_MVC_PROJECT.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASP_MVC_PROJECT.Controllers
 {
@@ -103,6 +104,34 @@ namespace ASP_MVC_PROJECT.Controllers
                 return RedirectToAction("Index");
             }
             return View(student);
+        }
+
+        // GET: Classes/DeleteStudent/5
+        public ActionResult AddStudent(int? classId)
+        {
+            if (classId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ICollection<ApplicationUser> @class = db.Users.Where(user => user.ClassID == null && user.Roles.FirstOrDefault().RoleId == "2").ToList();
+
+            if (@class == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ClassID = classId;
+            return View(@class);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddStudent(string studentID, int classID)
+        {
+            var student = db.Users.FirstOrDefault(user => user.Id == studentID);
+            student.ClassID = classID;
+            db.SaveChanges();
+
+            return RedirectToAction("AddStudent", new { classId = classID});
         }
 
         // GET: Classes/Delete/5

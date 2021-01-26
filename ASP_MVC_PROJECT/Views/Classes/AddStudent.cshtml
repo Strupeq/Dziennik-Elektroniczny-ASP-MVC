@@ -1,0 +1,51 @@
+﻿@model ICollection<ASP_MVC_PROJECT.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "AddStudent";
+}
+
+<h2>Dodaj ucznia</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Imię
+        </th>
+        <th>
+            Nazwisko
+        </th>
+        <th>
+            Dodaj
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    <input type="submit" value="Dodaj" class="btn btn-default" />
+                    <input type="hidden" name="studentID" value="@item.Id" />
+                    <input type="hidden" name="classID" value="@ViewBag.ClassID" />
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@*<div>
+    <div class="form-actions no-color">
+        <select></select>
+        <input type="submit" value="Dodaj" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>*@

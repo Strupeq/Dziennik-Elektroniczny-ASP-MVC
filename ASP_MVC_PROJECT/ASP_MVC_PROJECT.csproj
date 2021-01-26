@@ -258,6 +258,7 @@
     <Content Include="Views\Classes\Index.cshtml" />
     <Content Include="Views\UserWithRole\Index.cshtml" />
     <Content Include="Views\Classes\DeleteStudent.cshtml" />
+    <Content Include="Views\Classes\AddStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
