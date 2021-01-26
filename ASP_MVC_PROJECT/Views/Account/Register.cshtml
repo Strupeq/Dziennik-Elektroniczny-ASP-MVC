@@ -12,26 +12,50 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Surname, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AccountType, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(m => m.AccountType, new SelectList(new List<Object>{
+                       new { value = "student", text = "Uczeń" },
+                       new { value = "teacher", text = "Nauczyciel" },
+                       new { value = "parent", text = "Rodzic" }
+                       }, "value", "text"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Zarejestruj" />
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+            <input type="submit" class="btn btn-default form-control" value="Zarejestruj" />
         </div>
     </div>
 }

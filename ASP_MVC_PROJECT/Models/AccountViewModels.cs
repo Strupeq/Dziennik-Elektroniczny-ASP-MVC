@@ -65,6 +65,18 @@ namespace ASP_MVC_PROJECT.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Imię")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Surname { get; set; }
+
+        [Required]
+        [Display(Name = "Rodzaj użytkownika")]
+        public string AccountType { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
@@ -78,7 +90,7 @@ namespace ASP_MVC_PROJECT.Models
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź hasło")]
         [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }  
     }
 
     public class ResetPasswordViewModel
