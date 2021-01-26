@@ -1,6 +1,7 @@
 ﻿@model ASP_MVC_PROJECT.Models.IndexViewModel
 @{
     ViewBag.Title = "Zarządzaj";
+    var phoneNumber = ViewBag.UserPhoneNumber!=null? ViewBag.UserPhoneNumber: "brak" ;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -14,6 +15,12 @@
         <dd>
             @ViewBag.UserName @ViewBag.UserSurname
             [@Html.ActionLink("Zmień", "ChangeNameSurname")]
+        </dd>
+        <dt>
+            Numer telefonu:
+        </dt>
+        <dd>
+                @phoneNumber [@Html.ActionLink("Zmień", "ChangePhoneNumber")];
         </dd>
         <dt>Email</dt>
         <dd>
