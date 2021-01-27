@@ -1,40 +1,40 @@
 ﻿@model IEnumerable<ASP_MVC_PROJECT.Models.Subject>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Subjects";
 }
 
-<h2>Index</h2>
+<br />
+<h2>Lista przedmiotów</h2>
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            Nauczyciel
+            Nazwa przedmiotu
         </th>
         <th>
-            Nazwa przedmiotu
+            Nauczyciel
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Teacher.Name)
-            @Html.DisplayFor(modelItem => item.Teacher.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SubjectID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SubjectID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SubjectID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Teacher.Name)
+        @Html.DisplayFor(modelItem => item.Teacher.Surname)
+    </td>
+    <td>
+        @Html.ActionLink("Edytuj", "Edit", new { id = item.SubjectID }) |
+        @Html.ActionLink("Usuń", "Delete", new { id = item.SubjectID })
+    </td>
+</tr>
 }
-
 </table>
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>

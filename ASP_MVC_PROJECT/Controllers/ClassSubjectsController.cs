@@ -17,8 +17,8 @@ namespace ASP_MVC_PROJECT.Controllers
         // GET: ClassSubjects
         public ActionResult Index()
         {
-            var classSubjects = db.ClassSubjects.Include(c => c.Class).Include(c => c.Subject);
-            return View(classSubjects.ToList());
+            var classSubjects = db.ClassSubjects.Include(c => c.Class).Include(c => c.Subject).OrderBy(c => c.Class.Name).ToList();
+            return View(classSubjects);
         }
 
         // GET: ClassSubjects/Details/5
@@ -41,6 +41,13 @@ namespace ASP_MVC_PROJECT.Controllers
         {
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "Name");
             ViewBag.SubjectID = new SelectList(db.Subjects, "SubjectID", "Name");
+            var subjects = db.Subjects.ToList();
+            var subjectWithTeacherList = new List<Object>();
+            foreach (Subject subject in subjects)
+            {
+                subjectWithTeacherList.Add(new { value = subject.SubjectID, text = subject.Name + " " + "(" + subject.Teacher.Name + " " + subject.Teacher.Surname + ")" });
+            }
+            ViewBag.SubjectWithTeacherList = subjectWithTeacherList;
             return View();
         }
 
@@ -59,6 +66,13 @@ namespace ASP_MVC_PROJECT.Controllers
                 return RedirectToAction("Index");
             } else
             {
+                var subjects = db.Subjects.ToList();
+                var subjectWithTeacherList = new List<Object>();
+                foreach (Subject subject in subjects)
+                {
+                    subjectWithTeacherList.Add(new { value = subject.SubjectID, text = subject.Name + " " + "(" + subject.Teacher.Name + " " + subject.Teacher.Surname + ")" });
+                }
+                ViewBag.SubjectWithTeacherList = subjectWithTeacherList;
                 ViewBag.ErrorMessage = "Przedmiot isniteje już w danej klasie!";
             }
 
@@ -80,6 +94,13 @@ namespace ASP_MVC_PROJECT.Controllers
             {
                 return HttpNotFound();
             }
+            var subjects = db.Subjects.ToList();
+            var subjectWithTeacherList = new List<Object>();
+            foreach (Subject subject in subjects)
+            {
+                subjectWithTeacherList.Add(new { value = subject.SubjectID, text = subject.Name + " " + "(" + subject.Teacher.Name + " " + subject.Teacher.Surname + ")" });
+            }
+            ViewBag.SubjectWithTeacherList = subjectWithTeacherList;
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "Name", classSubject.ClassID);
             ViewBag.SubjectID = new SelectList(db.Subjects, "SubjectID", "Name", classSubject.SubjectID);
             return View(classSubject);
@@ -92,11 +113,23 @@ namespace ASP_MVC_PROJECT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClassSubjectID,ClassID,SubjectID")] ClassSubject classSubject)
         {
-            if (ModelState.IsValid)
+            var classSubjectObject = db.ClassSubjects.FirstOrDefault(item => item.ClassID == classSubject.ClassID && item.SubjectID == classSubject.SubjectID);
+            if (ModelState.IsValid && classSubjectObject == null)
             {
                 db.Entry(classSubject).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                var subjects = db.Subjects.ToList();
+                var subjectWithTeacherList = new List<Object>();
+                foreach (Subject subject in subjects)
+                {
+                    subjectWithTeacherList.Add(new { value = subject.SubjectID, text = subject.Name + " " + "(" + subject.Teacher.Name + " " + subject.Teacher.Surname + ")" });
+                }
+                ViewBag.SubjectWithTeacherList = subjectWithTeacherList;
+                ViewBag.ErrorMessage = "Przedmiot isniteje już w danej klasie!";
             }
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "Name", classSubject.ClassID);
             ViewBag.SubjectID = new SelectList(db.Subjects, "SubjectID", "Name", classSubject.SubjectID);

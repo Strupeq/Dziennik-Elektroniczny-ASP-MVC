@@ -4,34 +4,50 @@
     ViewBag.Title = "Lista przedmiotów";
 }
 
+<br />
 <h2>Lista przedmiotów przypisanych do klas</h2>
 <br />
 
+@{ var currentClass = ""; }
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Class.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject.Name)
-        </th>
-        <th></th>
-    </tr>
+    @foreach (var item in Model)
+    {
+        if (currentClass != item.Class.Name)
+        {
+            currentClass = item.Class.Name;
+            <tr class="bg-primary">
+                <th>
+                    @Html.DisplayFor(modelItem => item.Class.Name)
+                </th>
+                <th>
+                    Przedmiot
+                </th>
+                <th>
+                    Nauczyciel
+                </th>
+                <th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Class.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClassSubjectID })
-        </td>
-    </tr>
-}
+                </th>
+            </tr>
+        }
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Teacher.Name)
+                @Html.DisplayFor(modelItem => item.Subject.Teacher.Surname)
+            </td>
+            <td>
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.ClassSubjectID }) |
+                @Html.ActionLink("Usuń", "Delete", new { id = item.ClassSubjectID })
+            </td>
+        </tr>
+     }
 </table>
-<p>
-    @Html.ActionLink("Dodaj nowy", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Dodaj", "Create")
+    </p>
