@@ -15,6 +15,8 @@ namespace ASP_MVC_PROJECT.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
+
 
         public ManageController()
         {
@@ -61,9 +63,18 @@ namespace ASP_MVC_PROJECT.Controllers
                 : message == ManageMessageId.Error ? "Wystąpił błąd."
                 : message == ManageMessageId.AddPhoneSuccess ? "Dodano numer telefonu."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Usunięto numer telefonu."
+                : message == ManageMessageId.UserDataChangeSuccess ? "Dane użytkownika zostały zmienione"
+                : message == ManageMessageId.PhoneNumberChangedSuccess ? "Zmieniono numer telefonu"
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var userObject = db.Users.FirstOrDefault(user => user.Id == userId);
+
+            ViewBag.UserName = userObject.Name;
+            ViewBag.UserSurname = userObject.Surname;
+            ViewBag.UserEmail = userObject.Email;
+            ViewBag.UserPhoneNumber = userObject.PhoneNumber;
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -73,6 +84,78 @@ namespace ASP_MVC_PROJECT.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+        //GET /Manage/ChangeNameSurname
+        public ActionResult ChangeNameSurname()
+        {
+            var userId = User.Identity.GetUserId();
+            var userObj = db.Users.FirstOrDefault(user => user.Id == userId);
+
+            ChangeUserNameSurnameViewModel model = new ChangeUserNameSurnameViewModel() { Name = userObj.Name, Surname = userObj.Surname };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeNameSurname(ChangeUserNameSurnameViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var userObj = db.Users.FirstOrDefault(user => user.Id == userId );
+
+            if (userObj == null)
+            {
+                return HttpNotFound();
+            }
+
+            userObj.Name = model.Name;
+            userObj.Surname = model.Surname;
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.UserDataChangeSuccess });
+        }
+
+        //GET 
+        public ActionResult ChangePhoneNumber()
+        {
+            var userId = User.Identity.GetUserId();
+            var userObj = db.Users.FirstOrDefault(user => user.Id == userId);
+
+            ChangePhoneNumberViewModel model = new ChangePhoneNumberViewModel() { phoneNumber = userObj.PhoneNumber??"" };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePhoneNumber(ChangePhoneNumberViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var userObj = db.Users.FirstOrDefault(user => user.Id == userId);
+
+            if (userObj == null)
+            {
+                return HttpNotFound();
+            }
+
+            userObj.PhoneNumber = model.phoneNumber;
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.PhoneNumberChangedSuccess });
         }
 
         //
@@ -375,6 +458,8 @@ namespace ASP_MVC_PROJECT.Controllers
 
         public enum ManageMessageId
         {
+            PhoneNumberChangedSuccess,
+            UserDataChangeSuccess,
             AddPhoneSuccess,
             ChangePasswordSuccess,
             SetTwoFactorSuccess,

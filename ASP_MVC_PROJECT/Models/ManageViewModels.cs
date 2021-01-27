@@ -83,4 +83,23 @@ namespace ASP_MVC_PROJECT.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ChangeUserNameSurnameViewModel
+    {
+        [Required]
+        [Display(Name = "Imię")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Surname { get; set; }
+    }
+
+    public class ChangePhoneNumberViewModel
+    {
+        [Display(Name = "Numer Telefonu")]
+        [StringLength(10, ErrorMessage = "Numer telefonu musi mieć maksymalnie 10 znaków")]
+        [RegularExpression("([+]?[0-9]+)", ErrorMessage = "W numerze telefonu mogą być tylko liczby (numer może zaczynać się od +)")]
+        public string phoneNumber { get; set; }
+    }
 }
