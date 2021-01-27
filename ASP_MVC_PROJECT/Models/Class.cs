@@ -12,7 +12,7 @@ namespace ASP_MVC_PROJECT.Models
         public string ClassTeacherID { get; set; }
         public virtual ApplicationUser ClassTeacher { get; set; }
         public virtual ICollection<ApplicationUser> Students { get; set; }
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<ClassSubject> ClassSubjects { get; set; }
     }
 }
 

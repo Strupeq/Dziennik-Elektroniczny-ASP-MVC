@@ -1,6 +1,6 @@
 ﻿@model ASP_MVC_PROJECT.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Zarejestruj";
+    ViewBag.Title = "Formularz rejestracji";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,7 +8,6 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Utwórz nowe konto.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -21,16 +20,6 @@
         @Html.LabelFor(m => m.Surname, new { @class = "col-md-3 control-label" })
         <div class="col-md-9">
             @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AccountType, new { @class = "col-md-3 control-label" })
-        <div class="col-md-9">
-            @Html.DropDownListFor(m => m.AccountType, new SelectList(new List<Object>{
-                       new { value = "student", text = "Uczeń" },
-                       new { value = "teacher", text = "Nauczyciel" },
-                       new { value = "parent", text = "Rodzic" }
-                       }, "value", "text"), new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

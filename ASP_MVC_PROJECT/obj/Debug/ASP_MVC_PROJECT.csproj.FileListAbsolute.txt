@@ -125,3 +125,4 @@ C:\Users\Kornel\source\repos\Dziennik-Elektroniczny-ASP-MVC\ASP_MVC_PROJECT\obj\
 C:\Users\Kornel\source\repos\Dziennik-Elektroniczny-ASP-MVC\ASP_MVC_PROJECT\obj\Debug\ASP_MVC_PROJECT.pdb
 C:\Users\Kornel\source\repos\Dziennik-Elektroniczny-ASP-MVC\ASP_MVC_PROJECT\obj\Debug\ASP_MVC_PROJECT.Migrations.init.resources
 C:\Users\Kornel\source\repos\Dziennik-Elektroniczny-ASP-MVC\ASP_MVC_PROJECT\obj\Debug\ASP_MVC_PROJECT.csproj.GenerateResource.cache
+C:\Users\Kornel\source\repos\Dziennik-Elektroniczny-ASP-MVC\ASP_MVC_PROJECT\obj\Debug\ASP_MVC_PROJECT.Migrations.add_grades_and_subjects.resources

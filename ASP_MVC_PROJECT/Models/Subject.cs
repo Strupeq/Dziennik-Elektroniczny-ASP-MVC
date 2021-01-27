@@ -11,7 +11,6 @@ namespace ASP_MVC_PROJECT.Models
         public string Name { get; set; }
         public string TeacherID { get; set; }
         public virtual ApplicationUser Teacher { get; set; }
-        public int ClassID { get; set; }
-        public virtual Class Class { get; set; }
+        public virtual ICollection<ClassSubject> ClassSubjects { get; set; }
     }
 }

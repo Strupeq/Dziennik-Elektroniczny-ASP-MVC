@@ -18,6 +18,10 @@
         </dd>
     </dl>
 </div>
+<div>
+    <hr />
+    <h4>Lisa uczniów</h4>
+</div>
 <table class="table">
     <tr>
         <th>
@@ -54,7 +58,7 @@
 
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ClassID })
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.ClassID }) |
+    @Html.ActionLink("Cofnij", "Index") |
     @Html.ActionLink("Dodaj ucznia", "AddStudent", new { classId = Model.ClassID })
 </p>

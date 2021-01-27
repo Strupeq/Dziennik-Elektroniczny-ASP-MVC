@@ -73,10 +73,6 @@ namespace ASP_MVC_PROJECT.Models
         public string Surname { get; set; }
 
         [Required]
-        [Display(Name = "Rodzaj użytkownika")]
-        public string AccountType { get; set; }
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }

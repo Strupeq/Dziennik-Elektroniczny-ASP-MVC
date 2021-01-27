@@ -168,10 +168,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClassSubjectsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ClassesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Controllers\UserWithRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,9 +182,14 @@
     <Compile Include="Migrations\202101252201144_init.Designer.cs">
       <DependentUpon>202101252201144_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101262024453_add_grades_and_subjects.cs" />
+    <Compile Include="Migrations\202101262024453_add_grades_and_subjects.Designer.cs">
+      <DependentUpon>202101262024453_add_grades_and_subjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\ClassSubject.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -259,6 +266,16 @@
     <Content Include="Views\UserWithRole\Index.cshtml" />
     <Content Include="Views\Classes\DeleteStudent.cshtml" />
     <Content Include="Views\Classes\AddStudent.cshtml" />
+    <Content Include="Views\ClassSubjects\Create.cshtml" />
+    <Content Include="Views\ClassSubjects\Delete.cshtml" />
+    <Content Include="Views\ClassSubjects\Details.cshtml" />
+    <Content Include="Views\ClassSubjects\Edit.cshtml" />
+    <Content Include="Views\ClassSubjects\Index.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Details.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -279,6 +296,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202101252201144_init.resx">
       <DependentUpon>202101252201144_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101262024453_add_grades_and_subjects.resx">
+      <DependentUpon>202101262024453_add_grades_and_subjects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

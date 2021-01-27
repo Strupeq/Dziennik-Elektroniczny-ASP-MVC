@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -44,8 +45,11 @@ namespace ASP_MVC_PROJECT.Models
 
         public DbSet<Class> Classes { get; set; }
 		public DbSet<Subject> Subjects { get; set; }
+		public DbSet<Grade> Grades { get; set; }
+		public DbSet<ClassSubject> ClassSubjects { get; set; }
+        public IEnumerable ApplicationUsers { get; internal set; }
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
