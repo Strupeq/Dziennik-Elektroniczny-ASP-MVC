@@ -266,7 +266,6 @@
     <Content Include="Views\UserWithRole\Index.cshtml" />
     <Content Include="Views\Classes\DeleteStudent.cshtml" />
     <Content Include="Views\Classes\AddStudent.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\ClassSubjects\Create.cshtml" />
     <Content Include="Views\ClassSubjects\Delete.cshtml" />
     <Content Include="Views\ClassSubjects\Details.cshtml" />
@@ -277,10 +276,8 @@
     <Content Include="Views\Subjects\Details.cshtml" />
     <Content Include="Views\Subjects\Edit.cshtml" />
     <Content Include="Views\Subjects\Index.cshtml" />
-=======
     <Content Include="Views\Manage\ChangeNameSurname.cshtml" />
     <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
->>>>>>> a7a4ad642b16465753cf43c4d666a3c60b23331c
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
