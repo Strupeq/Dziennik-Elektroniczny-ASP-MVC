@@ -278,6 +278,8 @@
     <Content Include="Views\Subjects\Index.cshtml" />
     <Content Include="Views\Manage\ChangeNameSurname.cshtml" />
     <Content Include="Views\Manage\ChangePhoneNumber.cshtml" />
+    <Content Include="Views\UserWithRole\EditUser.cshtml" />
+    <Content Include="Views\UserWithRole\RemoveUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
