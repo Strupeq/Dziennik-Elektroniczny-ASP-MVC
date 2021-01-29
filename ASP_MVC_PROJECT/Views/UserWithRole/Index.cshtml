@@ -2,13 +2,35 @@
 
 @{
     ViewBag.Title = "Index";
+    List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole> roleList = ViewBag.roleList;
+
+    Dictionary<string, string> TransaltedRoles = new Dictionary<string, string>()
+        {
+            {"admin","admin"},
+            {"parent","rodzic"},
+            {"student","uczeń"},
+            {"teacher","nauczyciel"},
+            {"","brak"}
+        };
+
+
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4>Role</h4>
+<table class="table">
+    <th>
+        <a href="@Url.Action("Index")" class="btn btn-primary btn-lg">Nieprzypisany</a>
+    </th>
+    @foreach (var role in roleList)
+    {
+    <th>
+        <a href="@Url.Action("Index",new { roleID=role.Id })" class="btn btn-primary btn-lg"> @role.Name</a>
+    </th>
+    }
+
+</table>
 <table class="table">
     <tr>
         <th>
@@ -21,11 +43,12 @@
             @Html.DisplayNameFor(model => model.Surname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Activated)
+            @Html.DisplayNameFor(model => model.phoneNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Role)
         </th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -41,12 +64,27 @@
             @Html.DisplayFor(modelItem => item.Surname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Activated)
+            @if (item.phoneNumber != "" && item.phoneNumber!=null)
+            {
+                @Html.DisplayFor(modelItem => item.phoneNumber)
+            }
+            else
+            {
+                <span>brak</span>
+            }
+
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Role)
+            @TransaltedRoles[item.Role]
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj","EditUser", new { userID = item.Id } )
+        </td>
+        <td>
+            @Html.ActionLink("Usuń","RemoveUser", new { userID = item.Id })
         </td>
     </tr>
+
 }
 
 </table>
